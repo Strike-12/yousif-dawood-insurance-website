@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State License Verification — Yousif Dawood</title>
+<meta name="description" content="Interactive state-by-state directory of Yousif Dawood's insurance licenses, with official state verification links.">
+<link rel="icon" href="assets/img/avatar-placeholder.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="licensing">
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="index.html">Yousif Dawood<small>Family First Life</small></a>
+    <nav class="nav__links" id="nav-menu" aria-label="Main navigation" data-i18n-attr="aria-label:nav.label">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="insurance.html" data-i18n="nav.solutions">Insurance Solutions</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="licensing.html" aria-current="page" data-i18n="nav.licensing">Licensing</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a class="btn btn--solid btn--small nav-join-mobile" href="join.html" data-i18n="nav.join" data-track="join_click">JOIN US</a>
+    </nav>
+    <div class="nav__actions">
+      <div class="lang-switch" role="group" aria-label="Language" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="en" aria-pressed="true" data-i18n="lang.en">EN</button>
+        <button type="button" data-lang="es" aria-pressed="false" data-i18n="lang.es">ES</button>
+        <button type="button" data-lang="ar" aria-pressed="false" data-i18n="lang.ar">AR</button>
+      </div>
+      <a class="btn btn--solid btn--small" href="join.html" data-i18n="nav.join" data-track="join_click">JOIN US</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-i18n-attr="aria-label:nav.menu" aria-label="Menu"><span></span></button>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow" data-i18n="licenses.eyebrow"></p>
+    <h1 data-i18n="lic.hero.title"></h1>
+    <p data-i18n="lic.hero.text"></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+      </span>
+      <input type="search" id="state-search" data-i18n-placeholder="lic.search.placeholder" data-i18n-attr="aria-label:lic.search.label" aria-label="Search for a state" placeholder="Type a state name (e.g., Nevada)&#8230;" autocomplete="off">
+    </div>
+    <div id="state-grid" class="state-grid" role="list">
+      <noscript><p class="notice">JavaScript is required to browse the state license directory. Please enable JavaScript or contact Yousif directly at 619-938-5771.</p></noscript>
+    </div>
+    <p id="state-no-results" class="notice" hidden data-i18n="lic.search.results.none"></p>
+    <p class="footnote" style="margin-top:24px;" data-i18n="lic.footnote"></p>
+  </div>
+</section>
+
+<dialog class="state-dialog" id="state-dialog" aria-labelledby="state-dialog-title">
+  <div class="dialog-topbar">
+    <span class="badge" data-i18n="lic.panel.title"></span>
+    <button class="dialog-close" type="button" data-i18n-attr="aria-label:lic.panel.close" aria-label="Close">&#10005;</button>
+  </div>
+  <div id="state-dialog-body"></div>
+</dialog>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="nav__brand" href="index.html">Yousif Dawood<small>Family First Life</small></a>
+        <p data-i18n="footer.tagline">Life insurance guidance for individuals and families.</p>
+        <p data-i18n="common.npn">NPN: 22228159</p>
+      </div>
+      <nav aria-label="Explore" data-i18n-attr="aria-label:footer.explore">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="insurance.html" data-i18n="nav.solutions">Insurance Solutions</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="licensing.html" data-i18n="footer.licensing">State License Verification</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="join.html" data-i18n="nav.join">JOIN US</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+      </nav>
+      <nav aria-label="Connect" data-i18n-attr="aria-label:footer.connect">
+        <a href="tel:+16199385771" data-track="call_click"><span data-i18n="footer.call">Call</span>: <span data-i18n="common.phone">619-938-5771</span></a>
+        <a href="mailto:FamilyFirstLifeBusiness@gmail.com" data-track="email_click"><span data-i18n="footer.email">Email</span>: <span data-i18n="contact.email.value">FamilyFirstLifeBusiness@gmail.com</span></a>
+      </nav>
+    </div>
+    <div class="footer__legal">
+      <p data-i18n="footer.disclaimer">This is the personal professional website of Yousif Dawood, an independent insurance agent affiliated with Family First Life. It is not the official Family First Life corporate website and does not represent FFL or its leadership.</p>
+      <p>&copy; <span id="footer-year">2025</span> Yousif Dawood. <span data-i18n="footer.rights">All rights reserved.</span></p>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/licensing-data.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/licensing.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" role="img" aria-label="Profile photo placeholder">
+  <defs>
+    <clipPath id="c"><circle cx="66" cy="66" r="66"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="132" height="132" fill="#10233D"/>
+    <circle cx="66" cy="48" r="20" fill="none" stroke="#C5CDD7" stroke-width="2.5"/>
+    <path d="M 30 108 C 30 84 48 76 66 76 C 84 76 102 84 102 108" fill="none" stroke="#C5CDD7" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="0" y1="108" x2="132" y2="108" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  </g>
+</svg>
