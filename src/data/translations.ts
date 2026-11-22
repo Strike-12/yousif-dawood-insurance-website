@@ -18,8 +18,6 @@ export interface TranslationBundle {
     metrics: {
       statesValue: string;
       statesLabel: string;
-      carriersValue: string;
-      carriersLabel: string;
       languagesValue: string;
       languagesLabel: string;
       partnerValue: string;
@@ -32,7 +30,7 @@ export interface TranslationBundle {
     toggleEstimator: string;
     hideEstimator: string;
     estimatorTitle: string;
-    mortgageLabel: string;
+    debtLabel: string;
     incomeLabel: string;
     yearsLabel: string;
     finalExpensesLabel: string;
@@ -74,10 +72,10 @@ export interface TranslationBundle {
     showLessButton: string;
     emptyTitle: string;
     clearFilters: string;
-    showingCount: string;
     modal: {
       title: string;
       authority: string;
+      licenseClass: string;
       licenseNumber: string;
       npn: string;
       lines: string;
@@ -94,6 +92,7 @@ export interface TranslationBundle {
     sectionTitle: string;
     sectionSubtitle: string;
     highlights: string[];
+    contractorNotice: string;
     tracks: Record<
       CareerTrackKey,
       {
@@ -115,6 +114,8 @@ export interface TranslationBundle {
         studying: string;
         new_to_industry: string;
       };
+      languagesLabel: string;
+      otherLanguagesPlaceholder: string;
       submit: string;
       submitting: string;
       cancel: string;
@@ -176,30 +177,28 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
     },
     hero: {
       affiliation: 'Yousif Dawood · Family First Life Independent Broker',
-      title: 'Life insurance and mortgage protection made clear.',
+      title: 'Life insurance protection made clear for your family.',
       subtitle:
-        'Comparing 30+ top-rated carriers in English, Arabic, and Spanish with zero pressure.',
+        'Comparing 30+ top-rated carriers in English, Arabic, Spanish, and Chaldean (ܣܘܪܝܬ) with zero pressure.',
       primaryCta: 'Get a Free Quote',
       secondaryCta: 'Verify Licenses',
       languageLabel: 'Language',
       metrics: {
-        statesValue: '24 States',
-        statesLabel: 'Active Licenses',
-        carriersValue: '30+ Carriers',
-        carriersLabel: 'Market Comparison',
-        languagesValue: '3 Languages',
-        languagesLabel: 'EN · AR · ES',
-        partnerValue: 'NPN 20849173',
-        partnerLabel: 'Verified Producer ID',
+        statesValue: '30+',
+        statesLabel: 'Top-Rated Carriers',
+        languagesValue: '4 Languages',
+        languagesLabel: 'EN · AR · ES · Chaldean',
+        partnerValue: 'NPN 22228159',
+        partnerLabel: 'National Producer ID',
       },
     },
     coverage: {
       sectionTitle: '01. Coverage Options',
-      sectionSubtitle: 'Straightforward protection tailored to your home, family, and retirement.',
+      sectionSubtitle: 'Straightforward life protection tailored to your family and retirement.',
       toggleEstimator: 'Estimate Coverage Needs',
       hideEstimator: 'Hide Estimator',
       estimatorTitle: 'Quick Coverage Estimator',
-      mortgageLabel: 'Mortgage Balance',
+      debtLabel: 'Household Debt & Payoff',
       incomeLabel: 'Annual Income',
       yearsLabel: 'Years',
       finalExpensesLabel: 'Final Expenses',
@@ -207,11 +206,11 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       applyEstimatorCta: 'Use This Estimate',
       requestQuoteCta: 'Select Plan',
       plans: {
-        mortgage_protection: {
-          title: 'Mortgage Protection',
-          summary: 'Covers your home loan in case of death, critical illness, or disability.',
-          typicalTerm: '15–30 Years',
-          coverageRange: '$100K – $2M',
+        whole_life: {
+          title: 'Whole Life Insurance',
+          summary: 'Permanent lifelong protection with locked-in premiums and guaranteed cash value growth.',
+          typicalTerm: 'Lifetime',
+          coverageRange: '$25K – $1M+',
         },
         final_expense: {
           title: 'Final Expense',
@@ -241,9 +240,9 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
     },
     licenses: {
       sectionTitle: '02. State License Directory',
-      sectionSubtitle: 'Search or filter active U.S. producer licenses by state.',
+      sectionSubtitle: 'Search or filter verified U.S. producer licenses by state.',
       npnLabel: 'National Producer Number',
-      searchPlaceholder: 'Search state, code (MI, TX), or license #...',
+      searchPlaceholder: 'Search state, code (CA, TX), or license #...',
       statusFilterAll: 'All Statuses',
       statusFilterActive: 'Active Only',
       statusFilterRenewal: 'Renewal Scheduled',
@@ -252,10 +251,9 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         midwest: 'Midwest',
         south: 'South',
         west: 'West',
-        northeast: 'Northeast',
       },
       tableHeaders: {
-        state: 'State',
+        state: 'Jurisdiction',
         licenseNumber: 'License #',
         lines: 'Lines',
         status: 'Status',
@@ -266,19 +264,19 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         renewal_scheduled: 'Renewal Pending',
       },
       verifyButton: 'Details',
-      showAllButton: 'Show All {total} States',
+      showAllButton: 'Show All {total} Jurisdictions',
       showLessButton: 'Show Top 6',
       emptyTitle: 'No matching licenses found',
       clearFilters: 'Reset Filters',
-      showingCount: 'Showing {count} of {total} states',
       modal: {
         title: 'Producer License Record',
         authority: 'Issuing Department',
+        licenseClass: 'License Class',
         licenseNumber: 'License Number',
         npn: 'National Producer #',
         lines: 'Authorized Lines',
-        issueDate: 'Issued',
-        expirationDate: 'Expires',
+        issueDate: 'First Active',
+        expirationDate: 'Expiration Date',
         status: 'Status',
         copyLicense: 'Copy #',
         copied: 'Copied',
@@ -287,64 +285,60 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       },
     },
     careers: {
-      sectionTitle: '03. Join Our Agency',
+      sectionTitle: '03. Join Our Agency — 1099 Life Insurance Agent',
       sectionSubtitle:
-        'Build an independent insurance career with Yousif Dawood and Family First Life.',
+        'Self-employed, commission-only sales opportunity with uncapped earning potential, flexible scheduling, and remote work options.',
       highlights: [
-        'Vested renewals from day one',
-        'Exclusive leads — zero cold calling',
-        'Direct mentorship & bilingual scripts',
+        'Uncapped commission-only earnings',
+        'Flexible schedule & remote work',
+        'Vested renewals & exclusive leads',
       ],
+      contractorNotice:
+        'Independent Contractor Notice: Applicants are 1099 independent contractors (not W-2 employees) responsible for their own taxes and business expenses, and must hold an active state Life Insurance license or be willing to get licensed.',
       tracks: {
-        part_time: {
-          label: 'Part-Time',
-          headline: '10–15 hrs/week alongside your current job',
-          summary: 'Flexible evening/weekend schedule with guided training on your first 10 policies.',
-        },
-        full_time: {
-          label: 'Full-Time',
-          headline: '35+ hrs/week independent practice',
-          summary: 'Consistent weekly appointments across multiple states with top-tier commissions.',
-        },
-        agency_builder: {
-          label: 'Agency Builder',
-          headline: 'Recruit and lead your own regional team',
-          summary: 'Override equity on team production with CRM playbooks and leadership coaching.',
+        independent_1099: {
+          label: '1099 Producer',
+          headline: '1099 Independent Contractor Life Insurance Agent',
+          summary:
+            'Self-employed, commission-only role with uncapped income, remote flexibility, and direct carrier contracts.',
         },
       },
-      applyCta: 'Apply to Join',
-      formTitle: 'Agent Inquiry',
+      applyCta: 'Apply Now',
+      formTitle: '1099 Agent Application',
       fields: {
         fullName: 'Full Name',
         email: 'Email',
         phone: 'Phone',
-        state: 'Home State',
-        licenseStatus: 'License Status',
+        state: 'State of Residence',
+        licenseStatus: 'Current Licensing Status',
         licenseOptions: {
-          licensed: 'Actively Licensed',
-          studying: 'In Pre-Licensing',
-          new_to_industry: 'New to Insurance',
+          licensed: 'Active State Life Insurance License',
+          studying: 'Currently Completing Pre-Licensing',
+          new_to_industry: 'Unlicensed — Willing to Get Licensed',
         },
+        languagesLabel: 'Languages You Speak',
+        otherLanguagesPlaceholder: 'Other language(s) (optional)',
         submit: 'Submit Application',
         submitting: 'Sending...',
         cancel: 'Cancel',
       },
       successTitle: 'Application Sent',
-      successBody: 'Sent to FamilyFirstLifeBusiness@gmail.com. Yousif will respond within one business day.',
+      successBody:
+        'Sent to yousifdaFFL@gmail.com. Yousif will respond within one business day.',
       fallbackAction: 'Send via Email App',
       submitError: 'Could not submit right now. Please try again.',
       anotherButton: 'Submit Another',
     },
     contact: {
       sectionTitle: '04. Request a Consultation',
-      sectionSubtitle: 'Free coverage comparison in English, Arabic, or Spanish.',
+      sectionSubtitle: 'Free coverage comparison in English, Arabic, Spanish, or Chaldean (ܣܘܪܝܬ).',
       officeHoursLabel: 'Hours',
-      officeHoursValue: 'Mon – Sat · 8:30 AM – 7:30 PM EST',
+      officeHoursValue: 'Mon – Sat · 8:30 AM – 7:30 PM PST',
       languagesLabel: 'Languages',
-      languagesValue: 'English · العربية · Español',
+      languagesValue: 'English · العربية · Español · Chaldean (ܣܘܪܝܬ)',
       directPhoneLabel: 'Phone',
       directEmailLabel: 'Email',
-      affiliationValue: 'Family First Life · NPN 20849173',
+      affiliationValue: 'Family First Life · NPN 22228159',
       fields: {
         fullName: 'Full Name',
         email: 'Email',
@@ -362,7 +356,8 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         invalidPhone: 'Enter a 10-digit phone number.',
       },
       successTitle: 'Request Sent',
-      successBody: 'Sent to FamilyFirstLifeBusiness@gmail.com. Yousif will reply within one business day.',
+      successBody:
+        'Sent to yousifdaFFL@gmail.com. Yousif will reply within one business day.',
       fallbackAction: 'Send via Email App',
       submitError: 'Could not submit right now. Please try again.',
       referenceLabel: 'Reference',
@@ -384,29 +379,28 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
     },
     hero: {
       affiliation: 'يوسف داود · وسيط مستقل منتسب إلى Family First Life',
-      title: 'تأمين على الحياة وحماية الرهن العقاري بكل وضوح.',
-      subtitle: 'نقارن أكثر من 30 شركة تأمين رائدة بالإنجليزية والعربية والإسبانية دون أي ضغط.',
+      title: 'حماية التأمين على الحياة بكل وضوح لعائلتك.',
+      subtitle:
+        'نقارن أكثر من 30 شركة تأمين رائدة بالإنجليزية والعربية والإسبانية والكلدانية (ܣܘܪܝܬ) دون أي ضغط.',
       primaryCta: 'طلب استشارة مجانية',
       secondaryCta: 'التحقق من التراخيص',
       languageLabel: 'اللغة',
       metrics: {
-        statesValue: '24 ولاية',
-        statesLabel: 'تراخيص نشطة',
-        carriersValue: '+30 شركة',
-        carriersLabel: 'مقارنة مستقلة',
-        languagesValue: '3 لغات',
-        languagesLabel: 'EN · AR · ES',
-        partnerValue: 'NPN 20849173',
+        statesValue: '+30',
+        statesLabel: 'شركة تأمين معتمدة',
+        languagesValue: '4 لغات',
+        languagesLabel: 'EN · AR · ES · ܣܘܪܝܬ',
+        partnerValue: 'NPN 22228159',
         partnerLabel: 'الرقم الوطني المعتمد',
       },
     },
     coverage: {
       sectionTitle: '01. خيارات التغطية',
-      sectionSubtitle: 'حماية مباشرة لمنزلك وعائلتك وتقاعدك.',
+      sectionSubtitle: 'حماية مباشرة لعائلتك ومستقبلك وتقاعدك.',
       toggleEstimator: 'حاسبة التغطية السريعة',
       hideEstimator: 'إخفاء الحاسبة',
       estimatorTitle: 'تقدير سريع للتغطية',
-      mortgageLabel: 'رصيد الرهن العقاري',
+      debtLabel: 'الالتزامات والديون',
       incomeLabel: 'الدخل السنوي',
       yearsLabel: 'السنوات',
       finalExpensesLabel: 'المصاريف النهائية',
@@ -414,11 +408,11 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       applyEstimatorCta: 'اعتماد التقدير',
       requestQuoteCta: 'اختر الخطة',
       plans: {
-        mortgage_protection: {
-          title: 'حماية الرهن العقاري',
-          summary: 'تغطي قرض المنزل في حالات الوفاة أو المرض الحرج أو العجز.',
-          typicalTerm: '15–30 سنة',
-          coverageRange: '$100K – $2M',
+        whole_life: {
+          title: 'التأمين الدائم على الحياة (Whole Life)',
+          summary: 'حماية دائمة مدى الحياة بأقساط ثابتة ونمو نقدي مضمون.',
+          typicalTerm: 'مدى الحياة',
+          coverageRange: '$25K – $1M+',
         },
         final_expense: {
           title: 'المصاريف النهائية',
@@ -448,7 +442,7 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
     },
     licenses: {
       sectionTitle: '02. دليل تراخيص الولايات',
-      sectionSubtitle: 'ابحث أو صفِّ التراخيص النشطة حسب الولاية.',
+      sectionSubtitle: 'ابحث أو صفِّ التراخيص الموثقة حسب الولاية.',
       npnLabel: 'الرقم الوطني للوسيط',
       searchPlaceholder: 'ابحث بالولاية أو الرمز أو رقم الترخيص...',
       statusFilterAll: 'كل الحالات',
@@ -459,7 +453,6 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         midwest: 'الغرب الأوسط',
         south: 'الجنوب',
         west: 'الغرب',
-        northeast: 'الشمال الشرقي',
       },
       tableHeaders: {
         state: 'الولاية',
@@ -473,19 +466,19 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         renewal_scheduled: 'تجديد مجدول',
       },
       verifyButton: 'التفاصيل',
-      showAllButton: 'عرض كل الولايات ({total})',
-      showLessButton: 'عرض أول 6 ولايات',
+      showAllButton: 'عرض الكل ({total})',
+      showLessButton: 'عرض أول 6',
       emptyTitle: 'لا توجد نتائج مطابقة',
       clearFilters: 'إعادة ضبط',
-      showingCount: 'عرض {count} من {total} ولاية',
       modal: {
         title: 'سجل ترخيص الوسيط',
         authority: 'الجهة المصدرة',
+        licenseClass: 'فئة الترخيص',
         licenseNumber: 'رقم الترخيص',
         npn: 'الرقم الوطني (NPN)',
         lines: 'الفئات المصرح بها',
-        issueDate: 'الإصدار',
-        expirationDate: 'الانتهاء',
+        issueDate: 'تاريخ التفعيل',
+        expirationDate: 'تاريخ الانتهاء',
         status: 'الحالة',
         copyLicense: 'نسخ الرقم',
         copied: 'تم النسخ',
@@ -494,63 +487,60 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       },
     },
     careers: {
-      sectionTitle: '03. انضم إلى فريقنا',
-      sectionSubtitle: 'ابنِ مسارك المهني المستقل مع يوسف داود وFamily First Life.',
+      sectionTitle: '03. انضم إلى فريقنا — وكيل تأمين مستقل 1099',
+      sectionSubtitle:
+        'فرصة عمل حر بنظام العمولة فقط بدخل غير محدود وجدول مرن وخيارات عمل عن بُعد.',
       highlights: [
-        'ملكية التجديدات من اليوم الأول',
-        'عملاء مهتمون دون مكالمات عشوائية',
-        'تدريب مباشر ونصوص متعددة اللغات',
+        'عمولات غير محدودة',
+        'مرونة في العمل والعمل عن بُعد',
+        'ملكية التجديدات وعملاء مهتمون',
       ],
+      contractorNotice:
+        'إفصاح المتعاقد المستقل (1099): المتقدمون يعملون كمتعاقدين مستقلين بنظام 1099 (وليسوا موظفي W-2) ومسؤولون عن ضرائبهم ومصاريف أعمالهم، ويجب أن يحملوا رخصة تأمين على الحياة سارية أو الاستعداد للحصول عليها.',
       tracks: {
-        part_time: {
-          label: 'دوام جزئي',
-          headline: '10–15 ساعة أسبوعياً بجانب عملك',
-          summary: 'مواعيد مرنة مع متابعة عملية لأول 10 وثائق.',
-        },
-        full_time: {
-          label: 'دوام كامل',
-          headline: '+35 ساعة أسبوعياً لممارسة متفرغة',
-          summary: 'مواعيد أسبوعية منتظمة عبر عدة ولايات بمستويات عمولة عالية.',
-        },
-        agency_builder: {
-          label: 'بناء وكالة',
-          headline: 'استقطب ودرّب فريقك الإقليمي',
-          summary: 'حصة إدارية من إنتاج الفريق مع أدوات CRM وتوجيه قيادي.',
+        independent_1099: {
+          label: 'وكيل 1099 مستقل',
+          headline: 'وكيل تأمين على الحياة متعاقد مستقل 1099',
+          summary:
+            'عمل مستقل بنظام العمولة فقط مع دخل غير محدود ومرونة عن بُعد وعقود مباشرة مع شركات التأمين.',
         },
       },
-      applyCta: 'تقدم للانضمام',
-      formTitle: 'طلب الانضمام للوكلاء',
+      applyCta: 'قدّم الآن',
+      formTitle: 'طلب التقديم كوكيل 1099',
       fields: {
         fullName: 'الاسم الكامل',
         email: 'البريد الإلكتروني',
         phone: 'رقم الهاتف',
-        state: 'الولاية',
-        licenseStatus: 'حالة الترخيص',
+        state: 'ولاية الإقامة',
+        licenseStatus: 'حالة الترخيص الحالية',
         licenseOptions: {
-          licensed: 'مرخص حالياً',
-          studying: 'أستعد للاختبار',
-          new_to_industry: 'جديد في المجال',
+          licensed: 'رخصة تأمين على الحياة سارية',
+          studying: 'أكمل حالياً دورة ما قبل الترخيص',
+          new_to_industry: 'غير مرخص — مستعد للحصول على الرخصة',
         },
+        languagesLabel: 'اللغات التي تتحدثها',
+        otherLanguagesPlaceholder: 'لغات أخرى (اختياري)',
         submit: 'إرسال الطلب',
         submitting: 'جارٍ الإرسال...',
         cancel: 'إلغاء',
       },
       successTitle: 'تم إرسال الطلب',
-      successBody: 'تم توجيه الطلب إلى FamilyFirstLifeBusiness@gmail.com. سيتواصل معك يوسف خلال يوم عمل واحد.',
+      successBody:
+        'تم توجيه الطلب إلى yousifdaFFL@gmail.com. سيتواصل معك يوسف خلال يوم عمل واحد.',
       fallbackAction: 'إرسال عبر تطبيق البريد',
       submitError: 'تعذر الإرسال حالياً. يرجى المحاولة مرة أخرى.',
       anotherButton: 'إرسال طلب آخر',
     },
     contact: {
       sectionTitle: '04. اطلب استشارة',
-      sectionSubtitle: 'مقارنة مجانية بالإنجليزية أو العربية أو الإسبانية.',
+      sectionSubtitle: 'مقارنة مجانية بالإنجليزية أو العربية أو الإسبانية أو الكلدانية (ܣܘܪܝܬ).',
       officeHoursLabel: 'ساعات العمل',
-      officeHoursValue: 'الاثنين – السبت · 8:30 ص – 7:30 م EST',
+      officeHoursValue: 'الاثنين – السبت · 8:30 ص – 7:30 م PST',
       languagesLabel: 'اللغات',
-      languagesValue: 'English · العربية · Español',
+      languagesValue: 'English · العربية · Español · Chaldean (ܣܘܪܝܬ)',
       directPhoneLabel: 'الهاتف',
       directEmailLabel: 'البريد',
-      affiliationValue: 'Family First Life · NPN 20849173',
+      affiliationValue: 'Family First Life · NPN 22228159',
       fields: {
         fullName: 'الاسم الكامل',
         email: 'البريد الإلكتروني',
@@ -568,7 +558,8 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         invalidPhone: 'أدخل رقم هاتف من 10 أرقام.',
       },
       successTitle: 'تم إرسال الطلب',
-      successBody: 'تم توجيه الطلب إلى FamilyFirstLifeBusiness@gmail.com. سيتواصل معك يوسف خلال يوم عمل واحد.',
+      successBody:
+        'تم توجيه الطلب إلى yousifdaFFL@gmail.com. سيتواصل معك يوسف خلال يوم عمل واحد.',
       fallbackAction: 'إرسال عبر تطبيق البريد',
       submitError: 'تعذر الإرسال حالياً. يرجى المحاولة مرة أخرى.',
       referenceLabel: 'المرجع',
@@ -590,30 +581,28 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
     },
     hero: {
       affiliation: 'Yousif Dawood · Agente Independiente Family First Life',
-      title: 'Seguro de vida y protección hipotecaria sin complicaciones.',
+      title: 'Seguro de vida claro y directo para su familia.',
       subtitle:
-        'Comparamos más de 30 aseguradoras en inglés, árabe y español para darle claridad total.',
+        'Comparamos más de 30 aseguradoras en inglés, árabe, español y caldeo (ܣܘܪܝܬ) sin presiones.',
       primaryCta: 'Cotización Gratis',
       secondaryCta: 'Ver Licencias',
       languageLabel: 'Idioma',
       metrics: {
-        statesValue: '24 Estados',
-        statesLabel: 'Licencias Activas',
-        carriersValue: '30+ Aseguradoras',
-        carriersLabel: 'Comparación Directa',
-        languagesValue: '3 Idiomas',
-        languagesLabel: 'EN · AR · ES',
-        partnerValue: 'NPN 20849173',
+        statesValue: '30+',
+        statesLabel: 'Aseguradoras Líderes',
+        languagesValue: '4 Idiomas',
+        languagesLabel: 'EN · AR · ES · Caldeo',
+        partnerValue: 'NPN 22228159',
         partnerLabel: 'ID Nacional Verificado',
       },
     },
     coverage: {
       sectionTitle: '01. Opciones de Cobertura',
-      sectionSubtitle: 'Protección directa para su hogar, familia y retiro.',
+      sectionSubtitle: 'Protección directa para su familia, patrimonio y retiro.',
       toggleEstimator: 'Calcular Cobertura',
       hideEstimator: 'Ocultar Calculadora',
       estimatorTitle: 'Estimador Rápido',
-      mortgageLabel: 'Saldo Hipotecario',
+      debtLabel: 'Deudas y Compromisos',
       incomeLabel: 'Ingreso Anual',
       yearsLabel: 'Años',
       finalExpensesLabel: 'Gastos Finales',
@@ -621,11 +610,11 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       applyEstimatorCta: 'Usar Estimado',
       requestQuoteCta: 'Elegir Plan',
       plans: {
-        mortgage_protection: {
-          title: 'Protección Hipotecaria',
-          summary: 'Cubre su hipoteca en caso de fallecimiento, enfermedad crítica o discapacidad.',
-          typicalTerm: '15–30 Años',
-          coverageRange: '$100K – $2M',
+        whole_life: {
+          title: 'Seguro de Vida Entera (Whole Life)',
+          summary: 'Protección vitalicia con prima fija y acumulación garantizada de valor en efectivo.',
+          typicalTerm: 'Vitalicia',
+          coverageRange: '$25K – $1M+',
         },
         final_expense: {
           title: 'Gastos Finales',
@@ -657,7 +646,7 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       sectionTitle: '02. Directorio de Licencias',
       sectionSubtitle: 'Busque o filtre licencias activas por estado.',
       npnLabel: 'Número Nacional (NPN)',
-      searchPlaceholder: 'Buscar estado, código (TX) o licencia...',
+      searchPlaceholder: 'Buscar estado, código (CA, TX) o licencia...',
       statusFilterAll: 'Todos',
       statusFilterActive: 'Solo Activas',
       statusFilterRenewal: 'Renovación Pendiente',
@@ -666,10 +655,9 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         midwest: 'Medio Oeste',
         south: 'Sur',
         west: 'Oeste',
-        northeast: 'Noreste',
       },
       tableHeaders: {
-        state: 'Estado',
+        state: 'Jurisdicción',
         licenseNumber: 'Licencia #',
         lines: 'Líneas',
         status: 'Estado',
@@ -680,18 +668,18 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         renewal_scheduled: 'Renovación',
       },
       verifyButton: 'Detalles',
-      showAllButton: 'Ver los {total} Estados',
+      showAllButton: 'Ver Todos ({total})',
       showLessButton: 'Ver Primeros 6',
       emptyTitle: 'Sin licencias coincidentes',
       clearFilters: 'Restablecer',
-      showingCount: 'Mostrando {count} de {total} estados',
       modal: {
         title: 'Registro Oficial de Licencia',
         authority: 'Departamento Emisor',
+        licenseClass: 'Clase de Licencia',
         licenseNumber: 'Licencia Estatal',
         npn: 'Número Nacional (NPN)',
         lines: 'Líneas Autorizadas',
-        issueDate: 'Emisión',
+        issueDate: 'Primer Activo',
         expirationDate: 'Vencimiento',
         status: 'Estatus',
         copyLicense: 'Copiar #',
@@ -701,63 +689,60 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       },
     },
     careers: {
-      sectionTitle: '03. Únase a Nuestra Agencia',
-      sectionSubtitle: 'Desarrolle una carrera independiente con Yousif Dawood y Family First Life.',
+      sectionTitle: '03. Únase a Nuestra Agencia — Agente Independiente 1099',
+      sectionSubtitle:
+        'Oportunidad de ventas por cuenta propia, solo comisiones, ingresos sin límite, horario flexible y trabajo remoto.',
       highlights: [
-        'Renovaciones propias desde el día 1',
-        'Prospectos exclusivos sin llamadas en frío',
-        'Mentoría directa y guiones multilingües',
+        'Solo comisiones sin límite de ingresos',
+        'Horario flexible y trabajo remoto',
+        'Renovaciones propias y prospectos',
       ],
+      contractorNotice:
+        'Aviso de Contratista Independiente (1099): Los solicitantes son contratistas independientes 1099 (no empleados W-2), responsables de sus propios impuestos y gastos comerciales, y deben contar con licencia activa de Vida o estar dispuestos a obtenerla.',
       tracks: {
-        part_time: {
-          label: 'Medio Tiempo',
-          headline: '10–15 hrs/semana junto a su empleo',
-          summary: 'Horario flexible con acompañamiento práctico en sus primeras 10 pólizas.',
-        },
-        full_time: {
-          label: 'Tiempo Completo',
-          headline: '35+ hrs/semana práctica independiente',
-          summary: 'Citas semanales constantes en múltiples estados y comisiones competitivas.',
-        },
-        agency_builder: {
-          label: 'Líder de Agencia',
-          headline: 'Reclute y dirija su equipo regional',
-          summary: 'Participación sobre producción de equipo con sistemas CRM y mentoría.',
+        independent_1099: {
+          label: 'Productor 1099',
+          headline: 'Agente de Seguros de Vida Contratista Independiente 1099',
+          summary:
+            'Puesto por cuenta propia, solo comisiones, con ingresos sin tope, trabajo remoto y contratos directos.',
         },
       },
       applyCta: 'Aplicar Ahora',
-      formTitle: 'Solicitud de Agente',
+      formTitle: 'Solicitud de Agente 1099',
       fields: {
         fullName: 'Nombre Completo',
         email: 'Correo',
         phone: 'Teléfono',
-        state: 'Estado',
-        licenseStatus: 'Estado de Licencia',
+        state: 'Estado de Residencia',
+        licenseStatus: 'Estado de Licencia Actual',
         licenseOptions: {
-          licensed: 'Licencia Activa',
-          studying: 'En Pre-Licenciamiento',
-          new_to_industry: 'Nuevo en Seguros',
+          licensed: 'Licencia Estatal Activa de Vida',
+          studying: 'En Curso de Pre-Licenciamiento',
+          new_to_industry: 'Sin Licencia — Dispuesto a Obtenerla',
         },
+        languagesLabel: 'Idiomas que Habla',
+        otherLanguagesPlaceholder: 'Otro(s) idioma(s) (opcional)',
         submit: 'Enviar Solicitud',
         submitting: 'Enviando...',
         cancel: 'Cancelar',
       },
       successTitle: 'Solicitud Enviada',
-      successBody: 'Enviada a FamilyFirstLifeBusiness@gmail.com. Yousif le responderá en un día hábil.',
+      successBody:
+        'Enviada a yousifdaFFL@gmail.com. Yousif le responderá en un día hábil.',
       fallbackAction: 'Enviar por App de Correo',
       submitError: 'No se pudo enviar ahora. Intente nuevamente.',
       anotherButton: 'Enviar Otra',
     },
     contact: {
       sectionTitle: '04. Solicitar Consulta',
-      sectionSubtitle: 'Comparación gratuita en inglés, árabe o español.',
+      sectionSubtitle: 'Comparación gratuita en inglés, árabe, español o caldeo (ܣܘܪܝܬ).',
       officeHoursLabel: 'Horario',
-      officeHoursValue: 'Lun – Sáb · 8:30 AM – 7:30 PM EST',
+      officeHoursValue: 'Lun – Sáb · 8:30 AM – 7:30 PM PST',
       languagesLabel: 'Idiomas',
-      languagesValue: 'English · العربية · Español',
+      languagesValue: 'English · العربية · Español · Chaldean (ܣܘܪܝܬ)',
       directPhoneLabel: 'Teléfono',
       directEmailLabel: 'Correo',
-      affiliationValue: 'Family First Life · NPN 20849173',
+      affiliationValue: 'Family First Life · NPN 22228159',
       fields: {
         fullName: 'Nombre Completo',
         email: 'Correo',
@@ -775,7 +760,8 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
         invalidPhone: 'Teléfono de 10 dígitos.',
       },
       successTitle: 'Consulta Enviada',
-      successBody: 'Enviada a FamilyFirstLifeBusiness@gmail.com. Yousif le contactará en un día hábil.',
+      successBody:
+        'Enviada a yousifdaFFL@gmail.com. Yousif le contactará en un día hábil.',
       fallbackAction: 'Enviar por App de Correo',
       submitError: 'No se pudo enviar ahora. Intente nuevamente.',
       referenceLabel: 'Referencia',

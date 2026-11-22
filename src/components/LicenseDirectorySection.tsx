@@ -8,7 +8,7 @@ interface LicenseDirectorySectionProps {
   t: TranslationBundle['licenses'];
 }
 
-const REGION_KEYS: Region[] = ['all', 'midwest', 'south', 'west', 'northeast'];
+const REGION_KEYS: Region[] = ['all', 'midwest', 'south', 'west'];
 const DEFAULT_VISIBLE_LIMIT = 6;
 
 export const LicenseDirectorySection: React.FC<LicenseDirectorySectionProps> = ({ t }) => {
@@ -210,14 +210,8 @@ export const LicenseDirectorySection: React.FC<LicenseDirectorySectionProps> = (
               </table>
             </div>
 
-            <div className="px-4 py-3 bg-[#0A192F] border-t border-white/15 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-xs text-slate-300 tabular-nums">
-                {t.showingCount
-                  .replace('{count}', String(visibleLicenses.length))
-                  .replace('{total}', String(filteredLicenses.length))}
-              </p>
-
-              {!isFiltered && filteredLicenses.length > DEFAULT_VISIBLE_LIMIT && (
+            {!isFiltered && filteredLicenses.length > DEFAULT_VISIBLE_LIMIT && (
+              <div className="px-4 py-3 bg-[#0A192F] border-t border-white/15 flex items-center justify-end">
                 <button
                   type="button"
                   onClick={() => setShowAll((prev) => !prev)}
@@ -227,8 +221,8 @@ export const LicenseDirectorySection: React.FC<LicenseDirectorySectionProps> = (
                     ? t.showLessButton
                     : t.showAllButton.replace('{total}', String(filteredLicenses.length))}
                 </button>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -272,6 +266,19 @@ export const LicenseDirectorySection: React.FC<LicenseDirectorySectionProps> = (
                   <p className="text-xs text-slate-300">{t.modal.npn}</p>
                   <p className="font-mono font-semibold text-white tabular-nums">
                     {activeRecord.npn}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-slate-300">{t.modal.licenseClass}</p>
+                  <p className="font-medium text-white">{activeRecord.licenseClass}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-300">{t.modal.lines}</p>
+                  <p className="font-medium text-white">
+                    {activeRecord.linesOfAuthority.join(' · ')}
                   </p>
                 </div>
               </div>

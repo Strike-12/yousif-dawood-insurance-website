@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = '0.0.0.0';
-const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'FamilyFirstLifeBusiness@gmail.com';
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'yousifdaFFL@gmail.com';
 
 const rateWindowMs = 15 * 60 * 1000;
 const maxRequestsPerWindow = 15;
@@ -55,6 +55,8 @@ interface InquiryPayload {
   coverage?: string;
   preferredLanguage?: string;
   licenseStatus?: string;
+  languagesSpoken?: string[];
+  otherLanguages?: string;
   message?: string;
 }
 
@@ -152,6 +154,13 @@ async function startServer() {
     const coverage = cleanSingleLine(body.coverage, 80);
     const preferredLanguage = cleanSingleLine(body.preferredLanguage, 30);
     const licenseStatus = cleanSingleLine(body.licenseStatus, 80);
+    const otherLanguages = cleanSingleLine(body.otherLanguages, 120);
+    const languagesSpoken = Array.isArray(body.languagesSpoken)
+      ? body.languagesSpoken
+          .map((lang) => cleanSingleLine(lang, 40))
+          .filter(Boolean)
+          .slice(0, 8)
+      : [];
     const message = cleanMultiLine(body.message, 1500);
 
     if (!fullName || !email || !phone || !state) {
@@ -169,12 +178,12 @@ async function startServer() {
     const referenceId = `YD-${Math.floor(100000 + Math.random() * 900000)}`;
     const subject =
       inquiryType === 'career'
-        ? `[Agent Application ${referenceId}] ${fullName} (${state})`
+        ? `[1099 Agent Application ${referenceId}] ${fullName} (${state})`
         : `[Consultation Request ${referenceId}] ${fullName} (${state})`;
 
     const rows: [string, string][] = [
       ['Reference ID', referenceId],
-      ['Inquiry Type', inquiryType === 'career' ? 'Agent Recruitment / Career' : 'Client Consultation'],
+      ['Inquiry Type', inquiryType === 'career' ? '1099 Independent Contractor Application' : 'Client Consultation'],
       ['Full Name', fullName],
       ['Email', email],
       ['Phone', phone],
@@ -187,6 +196,11 @@ async function startServer() {
       if (message) rows.push(['Notes', message]);
     } else {
       if (licenseStatus) rows.push(['Licensing Status', licenseStatus]);
+      const allLanguages = [...languagesSpoken];
+      if (otherLanguages) allLanguages.push(otherLanguages);
+      if (allLanguages.length > 0) {
+        rows.push(['Languages Spoken', allLanguages.join(', ')]);
+      }
     }
 
     const textBody = rows.map(([k, v]) => `${k}: ${v}`).join('\n');

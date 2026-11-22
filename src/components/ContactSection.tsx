@@ -13,14 +13,16 @@ interface ContactSectionProps {
 }
 
 const COVERAGE_KEYS: CoverageKey[] = [
-  'mortgage_protection',
+  'whole_life',
   'final_expense',
   'term_life',
   'indexed_universal_life',
   'annuities',
 ];
 
-const RECIPIENT_EMAIL = 'FamilyFirstLifeBusiness@gmail.com';
+const RECIPIENT_EMAIL = 'yousifdaFFL@gmail.com';
+const PHONE_DISPLAY = '+1 (619) 938-5771';
+const PHONE_HREF = 'tel:+16199385771';
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
   t,
@@ -32,9 +34,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [state, setState] = useState(STATE_LICENSES[0]?.state ?? 'Michigan');
+  const [state, setState] = useState(STATE_LICENSES[0]?.state ?? 'California');
   const [coverage, setCoverage] = useState<CoverageKey>(selectedCoverage);
-  const [preferredLanguage, setPreferredLanguage] = useState<Language>(language);
+  const [preferredLanguage, setPreferredLanguage] = useState<string>(language);
   const [message, setMessage] = useState(estimatorNote);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -171,11 +173,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <dt className="text-xs text-slate-300">{t.directPhoneLabel}</dt>
                 <dd className="mt-0.5">
                   <a
-                    href="tel:+12485550194"
+                    href={PHONE_HREF}
                     className="inline-flex items-center gap-2 font-mono font-semibold text-white hover:underline tabular-nums"
                   >
                     <Phone className="w-3.5 h-3.5 text-slate-200" aria-hidden="true" />
-                    <span dir="ltr">+1 (248) 555-0194</span>
+                    <span dir="ltr">{PHONE_DISPLAY}</span>
                   </a>
                 </dd>
               </div>
@@ -273,7 +275,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="(248) 555-0194"
+                      placeholder="(619) 938-5771"
                       className="w-full px-3 py-2 bg-[#071426] border border-white/25 rounded-lg text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-white"
                     />
                     {errors.phone && <p className="mt-1 text-xs text-rose-300">{errors.phone}</p>}
@@ -350,12 +352,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <select
                       id="contact-language"
                       value={preferredLanguage}
-                      onChange={(e) => setPreferredLanguage(e.target.value as Language)}
+                      onChange={(e) => setPreferredLanguage(e.target.value)}
                       className="w-full px-3 py-2 bg-[#071426] border border-white/25 rounded-lg text-sm text-white focus:outline-none focus:border-white"
                     >
                       <option value="en">English</option>
-                      <option value="ar">العربية</option>
-                      <option value="es">Español</option>
+                      <option value="ar">العربية (Arabic)</option>
+                      <option value="es">Español (Spanish)</option>
+                      <option value="chaldean">Chaldean (ܣܘܪܝܬ)</option>
                     </select>
                   </div>
                 </div>

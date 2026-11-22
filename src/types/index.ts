@@ -1,11 +1,11 @@
 export type Language = 'en' | 'ar' | 'es';
 
-export type Region = 'all' | 'midwest' | 'south' | 'west' | 'northeast';
+export type Region = 'all' | 'midwest' | 'south' | 'west';
 
 export type LicenseStatus = 'active' | 'renewal_scheduled';
 
 export type CoverageKey =
-  | 'mortgage_protection'
+  | 'whole_life'
   | 'final_expense'
   | 'term_life'
   | 'indexed_universal_life'
@@ -16,6 +16,7 @@ export interface StateLicense {
   state: string;
   region: Exclude<Region, 'all'>;
   licenseNumber: string;
+  licenseClass: string;
   npn: string;
   linesOfAuthority: string[];
   status: LicenseStatus;
@@ -25,13 +26,4 @@ export interface StateLicense {
   verificationUrl: string;
 }
 
-export interface CoveragePlan {
-  key: CoverageKey;
-  number: string;
-  featured?: boolean;
-  typicalTerm: string;
-  coverageRange: string;
-  idealFor: string[];
-}
-
-export type CareerTrackKey = 'part_time' | 'full_time' | 'agency_builder';
+export type CareerTrackKey = 'independent_1099';

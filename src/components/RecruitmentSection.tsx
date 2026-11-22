@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Briefcase, CheckCircle2, Mail, Users } from 'lucide-react';
-import { CareerTrackKey } from '../types';
 import { TranslationBundle } from '../data/translations';
 import mentorshipImg from '../assets/images/agent_team_mentorship_1795243195171.jpg';
 
@@ -9,11 +8,15 @@ interface RecruitmentSectionProps {
   validationT: TranslationBundle['contact']['validation'];
 }
 
-const TRACK_KEYS: CareerTrackKey[] = ['part_time', 'full_time', 'agency_builder'];
-const RECIPIENT_EMAIL = 'FamilyFirstLifeBusiness@gmail.com';
+const RECIPIENT_EMAIL = 'yousifdaFFL@gmail.com';
+const SPOKEN_LANGUAGES = [
+  { id: 'English', label: 'English' },
+  { id: 'Arabic', label: 'Arabic (العربية)' },
+  { id: 'Spanish', label: 'Spanish (Español)' },
+  { id: 'Chaldean', label: 'Chaldean (ܣܘܪܝܬ)' },
+];
 
 export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, validationT }) => {
-  const [activeTrack, setActiveTrack] = useState<CareerTrackKey>('full_time');
   const [showInquiryForm, setShowInquiryForm] = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
 
@@ -24,6 +27,8 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
   const [licenseStatus, setLicenseStatus] = useState<'licensed' | 'studying' | 'new_to_industry'>(
     'licensed'
   );
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['English']);
+  const [otherLanguages, setOtherLanguages] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -33,22 +38,33 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
     mailtoUrl: string;
   } | null>(null);
 
-  const track = t.tracks[activeTrack];
+  const track = t.tracks.independent_1099;
+
+  const toggleLanguage = (langId: string) => {
+    setSelectedLanguages((prev) =>
+      prev.includes(langId) ? prev.filter((item) => item !== langId) : [...prev, langId]
+    );
+  };
 
   const buildMailtoUrl = (refId: string) => {
+    const spokenList = [...selectedLanguages];
+    if (otherLanguages.trim()) spokenList.push(otherLanguages.trim());
     const subject = encodeURIComponent(
-      `Agent Application (${refId}) - ${fullName.trim()} (${state.trim()})`
+      `1099 Producer Application (${refId}) - ${fullName.trim()} (${state.trim()})`
     );
     const body = encodeURIComponent(
       [
         `Reference: ${refId}`,
-        `Track: ${track.label}`,
+        `Role: ${track.label}`,
         `Name: ${fullName.trim()}`,
         `Email: ${email.trim()}`,
         `Phone: ${phone.trim()}`,
-        `State: ${state.trim()}`,
+        `State of Residence: ${state.trim()}`,
         `License Status: ${t.fields.licenseOptions[licenseStatus]}`,
-      ].join('\n')
+        spokenList.length > 0 ? `Languages Spoken: ${spokenList.join(', ')}` : '',
+      ]
+        .filter(Boolean)
+        .join('\n')
     );
     return `mailto:${RECIPIENT_EMAIL}?subject=${subject}&body=${body}`;
   };
@@ -89,6 +105,8 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
           phone: phone.trim(),
           state: state.trim(),
           licenseStatus: `${track.label} · ${t.fields.licenseOptions[licenseStatus]}`,
+          languagesSpoken: selectedLanguages,
+          otherLanguages: otherLanguages.trim(),
         }),
       });
 
@@ -122,6 +140,8 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
     setPhone('');
     setState('');
     setLicenseStatus('licensed');
+    setSelectedLanguages(['English']);
+    setOtherLanguages('');
     setErrors({});
     setSubmitError(null);
     setReceipt(null);
@@ -138,46 +158,26 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
               </h2>
               <p className="mt-2 text-sm sm:text-base text-slate-200">{t.sectionSubtitle}</p>
 
-              <p className="mt-4 text-xs sm:text-sm font-medium text-slate-200">
+              <p className="mt-3 text-xs sm:text-sm font-medium text-white">
                 {t.highlights.join(' · ')}
+              </p>
+
+              <p className="mt-3 text-xs text-slate-300 leading-relaxed border border-white/15 bg-[#071426] rounded-lg p-3">
+                {t.contractorNotice}
               </p>
             </div>
 
             <div className="bg-[#0F2342] border border-white/20 rounded-xl p-5">
-              <div
-                role="tablist"
-                aria-label="Career tracks"
-                className="flex flex-wrap items-center gap-1 p-1 bg-[#071426] border border-white/15 rounded-lg"
-              >
-                {TRACK_KEYS.map((key) => (
-                  <button
-                    key={key}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeTrack === key}
-                    onClick={() => setActiveTrack(key)}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
-                      activeTrack === key
-                        ? 'bg-white text-[#071426]'
-                        : 'text-slate-200 hover:text-white'
-                    }`}
-                  >
-                    {t.tracks[key].label}
-                  </button>
-                ))}
-              </div>
-
-              <div className="mt-4">
-                <h3 className="font-display text-base font-bold text-white">{track.headline}</h3>
-                <p className="mt-1 text-sm text-slate-200 leading-relaxed">{track.summary}</p>
-              </div>
+              <p className="text-xs font-semibold text-slate-300">{track.label}</p>
+              <h3 className="mt-1 font-display text-base font-bold text-white">{track.headline}</h3>
+              <p className="mt-1 text-sm text-slate-200 leading-relaxed">{track.summary}</p>
 
               {!showInquiryForm && (
                 <div className="mt-4">
                   <button
                     type="button"
                     onClick={() => setShowInquiryForm(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold text-[#071426] bg-white rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#071426] bg-white rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
                   >
                     <Briefcase className="w-4 h-4" aria-hidden="true" />
                     <span>{t.applyCta}</span>
@@ -188,7 +188,7 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
           </div>
 
           <div className="lg:col-span-5 flex">
-            <div className="w-full rounded-xl overflow-hidden border border-white/25 bg-[#0F2342] min-h-[200px]">
+            <div className="w-full rounded-xl overflow-hidden border border-white/25 bg-[#0F2342] min-h-[220px]">
               {!imgFailed ? (
                 <img
                   src={mentorshipImg}
@@ -238,8 +238,8 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate>
-                <div className="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-white/15">
+              <form onSubmit={handleSubmit} noValidate className="space-y-4">
+                <div className="flex items-center justify-between gap-4 pb-3 border-b border-white/15">
                   <h3 className="font-display text-base font-bold text-white">{t.formTitle}</h3>
                   <button
                     type="button"
@@ -321,9 +321,48 @@ export const RecruitmentSection: React.FC<RecruitmentSectionProps> = ({ t, valid
                   </div>
                 </div>
 
-                {submitError && <p className="mt-3 text-xs text-rose-300">{submitError}</p>}
+                {/* Spoken Languages Multi-Select */}
+                <div className="pt-2 border-t border-white/15">
+                  <p className="text-xs font-semibold text-white mb-2">
+                    {t.fields.languagesLabel}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {SPOKEN_LANGUAGES.map((lang) => {
+                      const checked = selectedLanguages.includes(lang.id);
+                      return (
+                        <label
+                          key={lang.id}
+                          className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-colors ${
+                            checked
+                              ? 'bg-white text-[#071426] border-white'
+                              : 'bg-[#071426] text-white border-white/25 hover:border-white/50'
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() => toggleLanguage(lang.id)}
+                            className="sr-only"
+                          />
+                          <span>{lang.label}</span>
+                        </label>
+                      );
+                    })}
 
-                <div className="mt-4">
+                    <input
+                      type="text"
+                      aria-label={t.fields.otherLanguagesPlaceholder}
+                      placeholder={t.fields.otherLanguagesPlaceholder}
+                      value={otherLanguages}
+                      onChange={(e) => setOtherLanguages(e.target.value)}
+                      className="px-3 py-1.5 bg-[#071426] border border-white/25 rounded-lg text-xs text-white placeholder:text-slate-400 focus:outline-none focus:border-white min-w-[200px]"
+                    />
+                  </div>
+                </div>
+
+                {submitError && <p className="text-xs text-rose-300">{submitError}</p>}
+
+                <div>
                   <button
                     type="submit"
                     disabled={submitting}

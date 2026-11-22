@@ -11,7 +11,7 @@ import { CoverageKey, Language } from './types';
 
 export function App() {
   const [language, setLanguage] = useState<Language>('en');
-  const [selectedCoverage, setSelectedCoverage] = useState<CoverageKey>('mortgage_protection');
+  const [selectedCoverage, setSelectedCoverage] = useState<CoverageKey>('whole_life');
   const [estimatorNote, setEstimatorNote] = useState<string>('');
 
   const t = TRANSLATIONS[language];

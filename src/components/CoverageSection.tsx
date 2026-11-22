@@ -10,7 +10,7 @@ interface CoverageSectionProps {
 }
 
 const PLAN_KEYS: CoverageKey[] = [
-  'mortgage_protection',
+  'whole_life',
   'term_life',
   'final_expense',
   'indexed_universal_life',
@@ -24,14 +24,14 @@ export const CoverageSection: React.FC<CoverageSectionProps> = ({
 }) => {
   const [showEstimator, setShowEstimator] = useState(false);
 
-  const [mortgageBalance, setMortgageBalance] = useState<number>(280000);
+  const [debtBalance, setDebtBalance] = useState<number>(200000);
   const [annualIncome, setAnnualIncome] = useState<number>(85000);
   const [replacementYears, setReplacementYears] = useState<number>(5);
   const [finalExpenses, setFinalExpenses] = useState<number>(20000);
 
   const estimatedTotal = useMemo(() => {
-    return mortgageBalance + annualIncome * replacementYears + finalExpenses;
-  }, [mortgageBalance, annualIncome, replacementYears, finalExpenses]);
+    return debtBalance + annualIncome * replacementYears + finalExpenses;
+  }, [debtBalance, annualIncome, replacementYears, finalExpenses]);
 
   const formatCurrency = (val: number) =>
     new Intl.NumberFormat(language === 'ar' ? 'en-US' : language === 'es' ? 'es-US' : 'en-US', {
@@ -73,19 +73,19 @@ export const CoverageSection: React.FC<CoverageSectionProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-end">
               <div className="md:col-span-3">
                 <div className="flex justify-between text-xs text-slate-200 mb-1.5">
-                  <label htmlFor="est-mortgage">{t.mortgageLabel}</label>
+                  <label htmlFor="est-debt">{t.debtLabel}</label>
                   <span className="font-mono tabular-nums text-white">
-                    {formatCurrency(mortgageBalance)}
+                    {formatCurrency(debtBalance)}
                   </span>
                 </div>
                 <input
-                  id="est-mortgage"
+                  id="est-debt"
                   type="range"
                   min={0}
                   max={1000000}
                   step={25000}
-                  value={mortgageBalance}
-                  onChange={(e) => setMortgageBalance(Number(e.target.value))}
+                  value={debtBalance}
+                  onChange={(e) => setDebtBalance(Number(e.target.value))}
                   className="w-full accent-white cursor-pointer"
                 />
               </div>
@@ -157,7 +157,7 @@ export const CoverageSection: React.FC<CoverageSectionProps> = ({
                   type="button"
                   onClick={() =>
                     onSelectCoverage(
-                      mortgageBalance > 0 ? 'mortgage_protection' : 'term_life',
+                      'whole_life',
                       `${t.recommendedCoverageLabel}: ${formatCurrency(estimatedTotal)}`
                     )
                   }

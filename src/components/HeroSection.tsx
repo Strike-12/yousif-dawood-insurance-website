@@ -116,18 +116,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/15 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-10 pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div>
             <p className="font-display text-xl font-bold text-white tabular-nums">
               {t.metrics.statesValue}
             </p>
             <p className="mt-0.5 text-xs text-slate-300">{t.metrics.statesLabel}</p>
-          </div>
-          <div>
-            <p className="font-display text-xl font-bold text-white tabular-nums">
-              {t.metrics.carriersValue}
-            </p>
-            <p className="mt-0.5 text-xs text-slate-300">{t.metrics.carriersLabel}</p>
           </div>
           <div>
             <p className="font-display text-xl font-bold text-white tabular-nums">
