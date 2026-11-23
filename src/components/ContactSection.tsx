@@ -9,7 +9,6 @@ interface ContactSectionProps {
   plansT: TranslationBundle['coverage']['plans'];
   language: Language;
   selectedCoverage: CoverageKey;
-  estimatorNote: string;
 }
 
 const COVERAGE_KEYS: CoverageKey[] = [
@@ -17,7 +16,7 @@ const COVERAGE_KEYS: CoverageKey[] = [
   'final_expense',
   'term_life',
   'indexed_universal_life',
-  'annuities',
+  'guaranteed_whole_life',
 ];
 
 const RECIPIENT_EMAIL = 'yousifdaFFL@gmail.com';
@@ -29,7 +28,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   plansT,
   language,
   selectedCoverage,
-  estimatorNote,
 }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -37,7 +35,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [state, setState] = useState(STATE_LICENSES[0]?.state ?? 'California');
   const [coverage, setCoverage] = useState<CoverageKey>(selectedCoverage);
   const [preferredLanguage, setPreferredLanguage] = useState<string>(language);
-  const [message, setMessage] = useState(estimatorNote);
+  const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -54,12 +52,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   useEffect(() => {
     setPreferredLanguage(language);
   }, [language]);
-
-  useEffect(() => {
-    if (estimatorNote) {
-      setMessage(estimatorNote);
-    }
-  }, [estimatorNote]);
 
   const buildMailtoUrl = (refId: string) => {
     const subject = encodeURIComponent(

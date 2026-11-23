@@ -9,7 +9,7 @@ export type CoverageKey =
   | 'final_expense'
   | 'term_life'
   | 'indexed_universal_life'
-  | 'annuities';
+  | 'guaranteed_whole_life';
 
 export interface StateLicense {
   code: string;

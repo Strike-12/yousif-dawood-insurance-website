@@ -12,7 +12,6 @@ import { CoverageKey, Language } from './types';
 export function App() {
   const [language, setLanguage] = useState<Language>('en');
   const [selectedCoverage, setSelectedCoverage] = useState<CoverageKey>('whole_life');
-  const [estimatorNote, setEstimatorNote] = useState<string>('');
 
   const t = TRANSLATIONS[language];
 
@@ -28,11 +27,8 @@ export function App() {
     }
   };
 
-  const handleSelectCoverage = (coverageKey: CoverageKey, note?: string) => {
+  const handleSelectCoverage = (coverageKey: CoverageKey) => {
     setSelectedCoverage(coverageKey);
-    if (note) {
-      setEstimatorNote(note);
-    }
     scrollToSection('contact');
   };
 
@@ -49,11 +45,7 @@ export function App() {
           onSecondaryCta={() => scrollToSection('licenses')}
         />
 
-        <CoverageSection
-          t={t.coverage}
-          language={language}
-          onSelectCoverage={handleSelectCoverage}
-        />
+        <CoverageSection t={t.coverage} onSelectCoverage={handleSelectCoverage} />
 
         <LicenseDirectorySection t={t.licenses} />
 
@@ -64,7 +56,6 @@ export function App() {
           plansT={t.coverage.plans}
           language={language}
           selectedCoverage={selectedCoverage}
-          estimatorNote={estimatorNote}
         />
       </main>
 

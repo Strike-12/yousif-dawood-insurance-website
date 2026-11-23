@@ -27,15 +27,6 @@ export interface TranslationBundle {
   coverage: {
     sectionTitle: string;
     sectionSubtitle: string;
-    toggleEstimator: string;
-    hideEstimator: string;
-    estimatorTitle: string;
-    debtLabel: string;
-    incomeLabel: string;
-    yearsLabel: string;
-    finalExpensesLabel: string;
-    recommendedCoverageLabel: string;
-    applyEstimatorCta: string;
     requestQuoteCta: string;
     plans: Record<
       CoverageKey,
@@ -43,7 +34,6 @@ export interface TranslationBundle {
         title: string;
         summary: string;
         typicalTerm: string;
-        coverageRange: string;
       }
     >;
   };
@@ -169,7 +159,7 @@ export interface TranslationBundle {
 export const TRANSLATIONS: Record<Language, TranslationBundle> = {
   en: {
     nav: {
-      coverage: 'Coverage',
+      coverage: 'Policies',
       licenses: 'Licenses',
       careers: 'Careers',
       contact: 'Contact',
@@ -193,48 +183,39 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       },
     },
     coverage: {
-      sectionTitle: '01. Coverage Options',
-      sectionSubtitle: 'Straightforward life protection tailored to your family and retirement.',
-      toggleEstimator: 'Estimate Coverage Needs',
-      hideEstimator: 'Hide Estimator',
-      estimatorTitle: 'Quick Coverage Estimator',
-      debtLabel: 'Household Debt & Payoff',
-      incomeLabel: 'Annual Income',
-      yearsLabel: 'Years',
-      finalExpensesLabel: 'Final Expenses',
-      recommendedCoverageLabel: 'Suggested Target',
-      applyEstimatorCta: 'Use This Estimate',
-      requestQuoteCta: 'Select Plan',
+      sectionTitle: '01. Life Insurance Policies',
+      sectionSubtitle: 'A quick, plain-English guide to each policy type and how it works.',
+      requestQuoteCta: 'Select Policy',
       plans: {
         whole_life: {
           title: 'Whole Life Insurance',
-          summary: 'Permanent lifelong protection with locked-in premiums and guaranteed cash value growth.',
+          summary:
+            'Permanent coverage that never expires as long as you pay. Your monthly rate is locked for life, and part of each payment builds cash value you can access later.',
           typicalTerm: 'Lifetime',
-          coverageRange: '$25K – $1M+',
         },
         final_expense: {
-          title: 'Final Expense',
-          summary: 'Permanent whole life coverage with locked-in rates for burial and end-of-life costs.',
+          title: 'Final Expense Insurance',
+          summary:
+            'A smaller whole life policy made to cover funeral, burial, and end-of-life bills. Rates stay fixed forever and most people qualify with simple health questions.',
           typicalTerm: 'Lifetime',
-          coverageRange: '$5K – $50K',
         },
         term_life: {
-          title: 'Term Life',
-          summary: 'Affordable income replacement during your family’s peak earning years.',
-          typicalTerm: '10–30 Years',
-          coverageRange: '$250K – $5M+',
+          title: 'Term Life Insurance',
+          summary:
+            'Simple, budget-friendly protection for a set window—from 10 to 50 years. If you pass away during that term, it pays your family tax-free cash to cover living costs or a mortgage.',
+          typicalTerm: '10–50 Years',
         },
         indexed_universal_life: {
           title: 'Indexed Universal Life (IUL)',
-          summary: 'Lifetime protection with tax-advantaged cash growth and a 0% market loss floor.',
+          summary:
+            'Lifelong protection plus a flexible savings account linked to a market index. Your cash can grow tax-free when the market rises, with a 0% floor so market drops never reduce it.',
           typicalTerm: 'Lifetime',
-          coverageRange: '$100K – $3M+',
         },
-        annuities: {
-          title: 'Retirement Annuities',
-          summary: 'Principal-protected 401(k) and IRA rollovers with guaranteed lifetime income.',
-          typicalTerm: '5–10 Years',
-          coverageRange: '$25K – $2M+',
+        guaranteed_whole_life: {
+          title: 'Guaranteed Whole Life',
+          summary:
+            'Lifetime coverage with guaranteed approval—no medical exam and no health questions required. Your monthly rate never goes up, and your protection stays locked in for life.',
+          typicalTerm: 'Lifetime',
         },
       },
     },
@@ -371,7 +352,7 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
   },
   ar: {
     nav: {
-      coverage: 'التغطية',
+      coverage: 'البوالص',
       licenses: 'التراخيص',
       careers: 'الوظائف',
       contact: 'تواصل معنا',
@@ -395,48 +376,39 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       },
     },
     coverage: {
-      sectionTitle: '01. خيارات التغطية',
-      sectionSubtitle: 'حماية مباشرة لعائلتك ومستقبلك وتقاعدك.',
-      toggleEstimator: 'حاسبة التغطية السريعة',
-      hideEstimator: 'إخفاء الحاسبة',
-      estimatorTitle: 'تقدير سريع للتغطية',
-      debtLabel: 'الالتزامات والديون',
-      incomeLabel: 'الدخل السنوي',
-      yearsLabel: 'السنوات',
-      finalExpensesLabel: 'المصاريف النهائية',
-      recommendedCoverageLabel: 'التغطية المقترحة',
-      applyEstimatorCta: 'اعتماد التقدير',
-      requestQuoteCta: 'اختر الخطة',
+      sectionTitle: '01. بوالص التأمين على الحياة',
+      sectionSubtitle: 'دليل سريع ومبسط لكل نوع بوليصة وكيف تعمل.',
+      requestQuoteCta: 'اختر البوليصة',
       plans: {
         whole_life: {
           title: 'التأمين الدائم على الحياة (Whole Life)',
-          summary: 'حماية دائمة مدى الحياة بأقساط ثابتة ونمو نقدي مضمون.',
+          summary:
+            'تغطية دائمة لا تنتهي ما دمت تسدد الأقساط. قسطك الشهري يثبت مدى الحياة، وجزء منه يبني قيمة نقدية يمكنك الاستفادة منها لاحقاً.',
           typicalTerm: 'مدى الحياة',
-          coverageRange: '$25K – $1M+',
         },
         final_expense: {
-          title: 'المصاريف النهائية',
-          summary: 'تغطية دائمة بأقساط ثابتة لتكاليف الجنازة والالتزامات النهائية.',
+          title: 'تأمين المصاريف النهائية (Final Expense)',
+          summary:
+            'بوليصة دائمة بمبالغ مناسبة لتغطية تكاليف الجنازة والدفن والفواتير النهائية. أقساطها ثابتة ولا تزيد، ويسهل التأهل لها بأسئلة صحية بسيطة.',
           typicalTerm: 'مدى الحياة',
-          coverageRange: '$5K – $50K',
         },
         term_life: {
-          title: 'التأمين المؤقت',
-          summary: 'تعويض دخل اقتصادي للأسرة خلال سنوات العمل النشطة.',
-          typicalTerm: '10–30 سنة',
-          coverageRange: '$250K – $5M+',
+          title: 'التأمين المؤقت على الحياة (Term Life)',
+          summary:
+            'حماية اقتصادية لفترة محددة من 10 إلى 50 سنة. إذا توفي المؤمَّن عليه خلال المدة، تحصل العائلة على مبلغ معفى من الضرائب لتغطية المعيشة أو الرهن.',
+          typicalTerm: '10–50 سنة',
         },
         indexed_universal_life: {
-          title: 'التأمين الشامل (IUL)',
-          summary: 'حماية دائمة مع نمو نقدي بمزايا ضريبية وحماية 0% من الخسائر.',
+          title: 'التأمين الشامل المرتبط بالمؤشر (IUL)',
+          summary:
+            'تغطية مدى الحياة مع حساب ادخار مرن مرتبط بمؤشر السوق. ينمو رصيدك معفى من الضرائب عند صعود السوق، مع حماية 0% تمنع خسارة رصيدك عند الهبوط.',
           typicalTerm: 'مدى الحياة',
-          coverageRange: '$100K – $3M+',
         },
-        annuities: {
-          title: 'معاشات التقاعد',
-          summary: 'حماية حسابات 401(k) وIRA مع دخل مضمون مدى الحياة.',
-          typicalTerm: '5–10 سنوات',
-          coverageRange: '$25K – $2M+',
+        guaranteed_whole_life: {
+          title: 'التأمين الدائم المضمون (Guaranteed Whole Life)',
+          summary:
+            'تغطية مدى الحياة بموافقة مضمونة دون فحص طبي أو أسئلة صحية. قسطك الشهري ثابت لا يرتفع، والتغطية تستمر معك مدى الحياة.',
+          typicalTerm: 'مدى الحياة',
         },
       },
     },
@@ -573,7 +545,7 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
   },
   es: {
     nav: {
-      coverage: 'Cobertura',
+      coverage: 'Pólizas',
       licenses: 'Licencias',
       careers: 'Carreras',
       contact: 'Contacto',
@@ -597,48 +569,39 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       },
     },
     coverage: {
-      sectionTitle: '01. Opciones de Cobertura',
-      sectionSubtitle: 'Protección directa para su familia, patrimonio y retiro.',
-      toggleEstimator: 'Calcular Cobertura',
-      hideEstimator: 'Ocultar Calculadora',
-      estimatorTitle: 'Estimador Rápido',
-      debtLabel: 'Deudas y Compromisos',
-      incomeLabel: 'Ingreso Anual',
-      yearsLabel: 'Años',
-      finalExpensesLabel: 'Gastos Finales',
-      recommendedCoverageLabel: 'Meta Sugerida',
-      applyEstimatorCta: 'Usar Estimado',
-      requestQuoteCta: 'Elegir Plan',
+      sectionTitle: '01. Pólizas de Seguro de Vida',
+      sectionSubtitle: 'Guía rápida y sencilla de cada tipo de póliza y cómo funciona.',
+      requestQuoteCta: 'Elegir Póliza',
       plans: {
         whole_life: {
           title: 'Seguro de Vida Entera (Whole Life)',
-          summary: 'Protección vitalicia con prima fija y acumulación garantizada de valor en efectivo.',
+          summary:
+            'Cobertura permanente que nunca vence mientras pague su prima. Su pago mensual queda fijo de por vida y acumula valor en efectivo disponible más adelante.',
           typicalTerm: 'Vitalicia',
-          coverageRange: '$25K – $1M+',
         },
         final_expense: {
-          title: 'Gastos Finales',
-          summary: 'Cobertura vitalicia con tarifa fija para gastos funerarios y médicos.',
+          title: 'Seguro de Gastos Finales',
+          summary:
+            'Una póliza de vida entera más pequeña diseñada para cubrir funeral, entierro y cuentas finales. La tarifa nunca sube y califica con preguntas simples de salud.',
           typicalTerm: 'Vitalicia',
-          coverageRange: '$5K – $50K',
         },
         term_life: {
-          title: 'Vida a Término',
-          summary: 'Reemplazo de ingresos accesible durante sus años productivos.',
-          typicalTerm: '10–30 Años',
-          coverageRange: '$250K – $5M+',
+          title: 'Seguro de Vida a Término (Term Life)',
+          summary:
+            'Protección sencilla y económica por un plazo fijo de 10 a 50 años. Si fallece durante ese plazo, su familia recibe dinero libre de impuestos para gastos o hipoteca.',
+          typicalTerm: '10–50 Años',
         },
         indexed_universal_life: {
           title: 'Vida Universal Indexada (IUL)',
-          summary: 'Protección vitalicia con crecimiento indexado y piso del 0% contra caídas.',
+          summary:
+            'Protección vitalicia combinada con una cuenta flexible ligada a un índice bursátil. Su dinero crece libre de impuestos cuando sube el mercado, con piso del 0% contra caídas.',
           typicalTerm: 'Vitalicia',
-          coverageRange: '$100K – $3M+',
         },
-        annuities: {
-          title: 'Anualidades de Retiro',
-          summary: 'Protección de capital para transferencias de 401(k) e IRA con renta vitalicia.',
-          typicalTerm: '5–10 Años',
-          coverageRange: '$25K – $2M+',
+        guaranteed_whole_life: {
+          title: 'Vida Entera Garantizada (Guaranteed Whole Life)',
+          summary:
+            'Cobertura de por vida con aprobación garantizada, sin examen médico ni preguntas de salud. Su pago mensual nunca sube y su protección permanece fija de por vida.',
+          typicalTerm: 'Vitalicia',
         },
       },
     },
